@@ -4,7 +4,7 @@
 
 A complete, matching disassembly of *Dragon Slayer I* for the Game Boy (Nihon Falcom / Epoch, 1990,
 Japan), with pseudo-code written next to every function and checked against the original code in an
-emulator. It is read with [gbbolt](https://github.com/AlexanderStebner/gbbolt): code and pseudo-code
+emulator. It is read with [gbbolt](https://github.com/gbbolt/gbbolt): code and pseudo-code
 side by side, each short piece of Python directly above the few instructions that do it.
 
 - **306 of 306 code units** have pseudo-code. 110 are verified by differential testing: the
@@ -44,8 +44,8 @@ The disassembly rebuilds the original ROM byte for byte. You need
 [RGBDS](https://rgbds.gbdev.io) 1.0.1, Python 3.9+ with numpy, and gbbolt next to this folder:
 
 ```
-git clone https://github.com/AlexanderStebner/gbbolt
-git clone https://github.com/AlexanderStebner/dragonslayer-gbbolt
+git clone https://github.com/gbbolt/gbbolt
+git clone https://github.com/gbbolt/dragonslayer-gbbolt
 cd dragonslayer-gbbolt
 python ../gbbolt/tools/audio.py             # render the music (needs ffmpeg)
 python ../gbbolt/tools/gbbolt.py            # build, verify, write out/site/index.html
