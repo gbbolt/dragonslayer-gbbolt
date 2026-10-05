@@ -1,0 +1,63 @@
+{
+  "_doc": "How tools/audio.py drives Dragon Slayer's sound engine. RAM names come from ram.inc. PlaySong / PlaySfx take the number in A. The game runs the engine from its LCD interrupt (LCDStatHandler.sound: UpdateSoundRegisters, then TickSound, then the handler's pops and reti); 'update' enters there, with the return address for that reti placed above the stack by 'setup'. Six channels: 4 music (square 1, square 2, wave, noise), 2 effect (square 1, noise); a song or effect counts as playing while one of its channel states is not 0.",
+  "init": "InitSound",
+  "update": "LCDStatHandler.sound",
+  "power_on": [["rNR52", 128], ["rNR51", 255], ["rNR50", 119]],
+  "stack": "0xDFF0",
+  "kinds": {
+    "music": {
+      "label": "Music",
+      "request_call": "PlaySong",
+      "setup": {"0xDFF6": 160, "0xDFF7": 254},
+      "playing": ["wSongCh1", "wSongCh2", "wSongCh3", "wSongCh4"],
+      "playing_mask": 7,
+      "ids": {"list": [1, 6, 8, 11, 12, 15, 16, 17, 18, 19, 20]},
+      "loops": true,
+      "max_seconds": 150
+    },
+    "sfx": {
+      "label": "Sound effects",
+      "request_call": "PlaySfx",
+      "setup": {"0xDFF6": 160, "0xDFF7": 254},
+      "playing": ["wSfxCh1", "wSfxCh2"],
+      "playing_mask": 7,
+      "ids": [0, 14],
+      "max_seconds": 6
+    }
+  },
+  "effect_channels": {"sfx": [0, 3]},
+  "loop_frames": {
+    "_doc": "[update where the loop starts, update where it jumps back]: every part of these songs ends with $FE (start over) and all parts have the same length, so the song repeats after length x 8 / tempo updates; the first notes sound at update 1",
+    "music 1": [1, 2497],
+    "music 6": [1, 1729],
+    "music 8": [1, 769]
+  },
+  "names": {
+    "music 1": ["Field music", "PlayFieldMusic: on the map (numbers $00-$05, $07, $09, $0A, $0D and $0E play this song too)"],
+    "music 6": ["Dragon music", "PlayFieldMusic once the dragon has been beaten three times; first after its third defeat"],
+    "music 8": ["Flying", "CastFly: while the hero flies"],
+    "music 11": ["Phase start", "StartGame / ContinueGame: the PHASE n / START ! screen"],
+    "music 12": ["Phase clear", "PhaseClear: twice on the phase-clear screen"],
+    "music 15": ["Pause", "PauseGame: pausing and unpausing"],
+    "music 16": ["Into a warp", "EnterWarp: the hero vanishes"],
+    "music 17": ["Out of a warp", "EnterWarp: the hero appears at the other end"],
+    "music 18": ["The hero changes", "TakeOrDropItem: the item on cell 6"],
+    "music 19": ["Jump / return spell landing", "WarpHeroTo"],
+    "music 20": ["Fly spell take-off", "CastFly"],
+    "sfx 0": ["A wall crumbles", "CrumbleWallAhead"],
+    "sfx 1": ["Pushing against a wall", "KickWallAhead"],
+    "sfx 2": ["Freeze spell", "CastFreeze"],
+    "sfx 3": ["Flash spell", "CastFlash"],
+    "sfx 4": ["Item taken or used up", "TakeOrDropItem"],
+    "sfx 5": ["A find or gold; the dragon flashes", "TakeOrDropItem, DragonFlash"],
+    "sfx 6": ["The marker wakes up", "AfterHeroStep"],
+    "sfx 7": ["A thief comes into view", "BuildSprites"],
+    "sfx 8": ["Falling into a pit", "StepOnPit"],
+    "sfx 9": ["A monster attacks", "TurnEnd"],
+    "sfx 10": ["The hero's blow does no damage", "AttackObject"],
+    "sfx 11": ["The hero's blow hits", "AttackObject"],
+    "sfx 12": ["The hero is hit lightly", "TurnEnd: no damage, or a potion stolen"],
+    "sfx 13": ["The hero is hit", "TurnEnd"],
+    "sfx 14": ["A monster vanishes", "AttackObject (defeated), PhaseClear"]
+  }
+}

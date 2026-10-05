@@ -1,0 +1,76 @@
+# Virtual folders, in reading order: path | description
+# Functions say where they live with `;@ path: folder/sub`; data blocks without a
+# path go to the folder of the functions that use them.
+system | Power-on, interrupts and the hardware services used everywhere.
+system/vectors | The fixed addresses the CPU jumps to: restarts and interrupt vectors.
+system/header | The cartridge header: entry point, Nintendo logo, title and checksums.
+system/boot | Power-on: clearing memory, the OAM DMA routine, the LCD and interrupts.
+system/interrupts | The interrupt handlers' entry points.
+system/vblank | What happens in every VBlank: sprites, the joypad, timers.
+system/joypad | Reading the buttons.
+system/timer | Frame timers.
+system/memory | Clearing, filling and copying memory.
+system/math | 16-bit arithmetic on variables and random numbers.
+title | The title screen, GAME START / CONTINUE and the cheat that starts in phase 2.
+title/screen | Drawing the title screen.
+game | The turns of the game and its phases.
+game/phase | Starting a phase: the phase screen, unpacking its map, placing everything.
+game/turn | One turn: the hero moves or attacks, then every monster on the map gets its move.
+game/home | Coming home: HP refilled, the pieces counted.
+game/pause | The pause.
+game/over | Game over and the end of a phase.
+map | The world map: 80 x 100 cells packed into a bit stream, unpacked into RAM, shown 10 x 9 cells at a time.
+map/data | The two packed maps, one per phase.
+map/unpack | Unpacking a map into wMap, 4 bits a cell.
+map/cells | Reading and writing cells; cell types 15 and up live in side tables.
+map/view | The visible part of the map and where it sits in the background map.
+map/scroll | Scrolling the view by one cell.
+map/draw | Drawing cells with their four tiles.
+map/warps | The warps and where they lead.
+map/traps | The pit.
+player | The hero: walking, pushing, carrying, his stats and his spells.
+player/move | Walking one cell, the step marker.
+player/position | Where the hero is and the cells around him.
+player/push | Pushing rocks (and the house) with the right item.
+player/cells | Changing the cell the hero stands on.
+player/stats | Strength, HP and the rest.
+player/sprite | The hero's sprites.
+player/home | The home cell.
+player/warp | The warp effects.
+player/magic | The magic menu and its spells: jump, return, map, break, kick, freeze, flash, fly.
+player/magic/map | The map spell: 72 rows x 80 columns of the world around the hero as one picture, 2 x 2 pixels a cell.
+items | What the hero picks up, carries and drops.
+items/take | Taking and dropping items.
+monsters | The monsters: where they start, how they move, the thieves and the dragon.
+monsters/records | The monster records in RAM.
+monsters/spawn | Where monsters appear and what each kind is like.
+monsters/move | Chasing, fleeing and wandering, a cell at a time.
+monsters/thieves | Thieves, who fly over walls and steal what the hero carries.
+monsters/dragon | The dragon, 3 x 3 cells big, and its fire.
+monsters/draw | Monster sprites.
+monsters/animation | Monster animation.
+combat | Fights between the hero and the monsters.
+combat/hero | The hero's attacks.
+combat/monster | The monsters' attacks.
+combat/reward | What a defeated monster gives.
+combat/death | Dying.
+status | The windows with the hero's numbers and the monster he fights.
+status/window | Opening, drawing and closing the windows.
+status/numbers | Drawing numbers.
+status/palette | Palette effects of the status display.
+gfx | Getting things onto the screen.
+gfx/tiles | Tile graphics and loading them into VRAM.
+gfx/bg | Background helpers.
+gfx/bgmap | Writing to the background maps.
+gfx/sprites | The sprite buffers: two OAM lists shown in turn, so more sprites fit on a line.
+gfx/sprites/lists | Building the near, middle and far sprite lists.
+gfx/palette | Fades and flashes.
+text | Texts and the character set.
+text/screens | The texts of the screens, one tilemap row each.
+sound | The sound engine: songs on four channels, effects on two.
+sound/api | The engine's entry points at $7038.
+sound/engine | The per-frame update and the sound registers.
+sound/data | Notes, instruments, drums and the wave sample.
+sound/music | The songs, one folder each.
+sound/sfx | The sound effects, one folder each.
+data | Tables that fit nowhere else.

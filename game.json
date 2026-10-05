@@ -1,0 +1,82 @@
+{
+  "_doc": "Facts about this game that the gbbolt tools need. Names are labels / RAM names of the disassembly.",
+  "id": "dragonslayer",
+  "rom": "dragonslayer.gb",
+  "sha1": "7d987446f67d8bee42482a4932d0fa60318238e4",
+  "title": "DRAGON SLAYER 1",
+  "publisher": "Epoch",
+  "year": 1990,
+  "main": "game.asm",
+  "link_flags": [
+    "--tiny"
+  ],
+  "fix_flags": [
+    "-v",
+    "-p",
+    "255"
+  ],
+  "test_memory": {
+    "stack_top": "0xDF00",
+    "stack_zone": [
+      "0xDE00",
+      "0xDF00"
+    ],
+    "free_ram": [
+      "0xC000",
+      "0xDE00"
+    ]
+  },
+  "entry": "Boot",
+  "trace_entries": {
+    "0x06F8": "JumpEntry_06F8",
+    "0x06FB": "JumpEntry_06FB",
+    "0x06FE": "JumpEntry_06FE",
+    "0x0701": "JumpEntry_0701",
+    "0x0704": "JumpEntry_0704",
+    "0x0707": "JumpEntry_0707",
+    "0x070A": "JumpEntry_070A",
+    "0x070D": "JumpEntry_070D",
+    "0x0710": "JumpEntry_0710",
+    "0x0713": "JumpEntry_0713",
+    "0x0716": "JumpEntry_0716",
+    "0x0719": "JumpEntry_0719",
+    "0x071C": "JumpEntry_071C",
+    "0x071F": "JumpEntry_071F",
+    "0x0722": "JumpEntry_0722",
+    "0x0725": "JumpEntry_0725",
+    "0x0728": "JumpEntry_0728",
+    "0x072B": "JumpEntry_072B",
+    "0x072E": "JumpEntry_072E",
+    "0x0731": "JumpEntry_0731",
+    "0x0734": "JumpEntry_0734",
+    "0x0737": "JumpEntry_0737",
+    "0x073A": "JumpEntry_073A",
+    "0x073D": "JumpEntry_073D",
+    "0x1F63": "JumpEntry_1F63",
+    "0x1F66": "JumpEntry_1F66",
+    "0x1F69": "JumpEntry_1F69",
+    "0x1F6C": "JumpEntry_1F6C",
+    "0x1F6F": "JumpEntry_1F6F",
+    "0x1F72": "JumpEntry_1F72",
+    "0x1F75": "JumpEntry_1F75",
+    "0x1F78": "JumpEntry_1F78",
+    "0x2118": "JumpEntry_2118",
+    "0x211A": "JumpEntry_211A",
+    "0x211C": "JumpEntry_211C",
+    "0x211E": "JumpEntry_211E",
+    "0x2120": "JumpEntry_2120",
+    "0x2122": "JumpEntry_2122",
+    "0x2124": "JumpEntry_2124",
+    "0x2126": "JumpEntry_2126",
+    "0x2128": "JumpEntry_2128",
+    "0x212A": "JumpEntry_212A",
+    "0x212C": "JumpEntry_212C",
+    "0x212E": "JumpEntry_212E",
+    "0x2130": "JumpEntry_2130",
+    "0x2132": "JumpEntry_2132",
+    "0x2134": "JumpEntry_2134",
+    "0x2136": "JumpEntry_2136"
+  },
+  "thumbnail": "gen/screens_title.png",
+  "tile_addressing": "8800"
+}
