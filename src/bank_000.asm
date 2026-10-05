@@ -10977,8 +10977,9 @@ ObjectSpawnPoints::
 	db $d2, $dd, $d3, $05, $d3, $1b, $db, $3a, $db, $ed, $dd, $1a, $de, $9c, $de, $db
 ;@ path: monsters/spawn
 ;@ The 32 monster kinds: three big-endian words each, copied into a new monster's record
-;@ bytes +8 to +13; the first is its life (DefeatMonster sets it to 0), the other two are
-;@ its fighting values. Kind: life, value 2, value 3 -
+;@ bytes +8 to +13: its life (the hero's blows take it down; DefeatMonster sets it to 0), its
+;@ attack (MonsterAttack: the hero loses attack minus his maximum hit points) and its defence
+;@ (AttackObject: a powered-up hero does his strength minus it). Kind: life, attack, defence -
 ;@ 0: 150 30 15; 1: 300 80 40; 2: 200 200 160; 3: 420 400 300; 4: 500 750 640;
 ;@ 5: 750 1300 1100; 6: 1000 2000 1140; 7: 2000 2500 1780; 8: 30000 3500 900;
 ;@ 9: 10000 4550 3600; 10: 6000 5800 6100; 11: 1300 7000 5400; 12: 4700 8500 8900;

@@ -46,11 +46,14 @@ def build(ctx):
         rows.append([k, {'image': sprite(ctx, mem, e[0:4])}, {'image': sprite(ctx, mem, e[4:8])}] + words)
     return [{
         'name': 'monster-kinds', 'type': 'table', 'title': 'The 32 monster kinds',
-        'columns': ['kind', 'frame 1', 'frame 2', 'life', 'value 2', 'value 3'],
+        'columns': ['kind', 'frame 1', 'frame 2', 'life', 'attack', 'defence'],
         'rows': rows,
         'doc': ['Every monster kind with its two animation frames, as BuildSprites puts them on screen: '
                 'ObjectSpriteTiles gives the tile and attributes of the left and the right 8x16 half for each '
                 'frame, drawn here with the sprite tiles the game has loaded. The numbers are the kind\'s three '
-                'big-endian words in ObjectKindStats; the first is its life.'],
-        'users': ['ObjectSpriteTiles', 'ObjectKindStats', 'BuildSprites', 'InitObjects'],
+                'big-endian words in ObjectKindStats, copied into each new monster\'s record: its life, its attack '
+                '(MonsterAttack: the hero loses the attack minus his maximum hit points, at least 1) and its '
+                'defence (AttackObject: a powered-up hero takes his strength minus it off the monster\'s life; '
+                'otherwise every blow does just 1).'],
+        'users': ['ObjectSpriteTiles', 'ObjectKindStats', 'BuildSprites', 'UpdateMonsters', 'AttackObject', 'MonsterAttack'],
     }]
